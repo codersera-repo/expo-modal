@@ -1,6 +1,6 @@
 {
   "name": "expo-modal",
-  "version": "1.0.5",
+  "version": "1.0.6",
   "description": "Shows the modal full screen on the react-native window",
   "main": "index.js",
   "scripts": {
@@ -8,10 +8,15 @@
   },
   "keywords": [
     "react-native-modal",
+    "react-native-expo-modal",
     "expo-modal",
     "expo-modal-full-screen",
     "react-native-modal-full-screen"
   ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/codersera-repo/expo-modal.git",
+  },
   "peerDependencies": {
     "react-native": ">=0.20.0",
     "prop-types": ">=10.0.0"
