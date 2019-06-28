@@ -49,6 +49,8 @@ const styles = StyleSheet.create({
         left: 0,
         height,
         width,
+        alignItems: 'center',
+        justifyContent: 'center',
         backgroundColor: 'rgba(255,255,255,0.5)',
         zIndex: 100,
     },

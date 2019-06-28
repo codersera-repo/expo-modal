@@ -19,6 +19,7 @@ export default class App extends React.Component {
 
     render() {
 
+        // innerComponent is the one that'll be displayed within the modal, you have full control of its styling.
         const innerComponent = <View style={{height: height/2 , width: width, justifyContent: 'center', alignItems: 'center'}}>
             <Text>Hello world</Text>
             <TouchableOpacity onPress={() => dismissModal()} ><Text>close modal</Text></TouchableOpacity>
@@ -26,7 +27,7 @@ export default class App extends React.Component {
 
         return (
             <View style={styles.container}>
-                <Modal/>
+                <Modal containerStyle={{backgroundColor: 'blue'}}/> /* add any style, this will override the main controller*/
 
                 <Text>{DeviceInfo.getBrand()}</Text>
                 <Video

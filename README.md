@@ -72,45 +72,47 @@ You can always tweak the styling by passing containerStyle props.
    
    export default class App extends React.Component {
    
-     render() {
+       render() {
    
-       const innerComponent = <View style={{height: height/2 , width: width, justifyContent: 'center', alignItems: 'center'}}>
-         <Text>Hello world</Text>
-         <TouchableOpacity onPress={() => dismissModal()} ><Text>close modal</Text></TouchableOpacity>
-       </View>
-   
-       return (
-           <View style={styles.container}>
-             <Modal/>
-   
-             <Text>{DeviceInfo.getBrand()}</Text>
-             <Video
-                 source={{uri: 'http://d23dyxeqlo5psv.cloudfront.net/big_buck_bunny.mp4'}}
-                 shouldPlay={true}
-                 resizeMode="cover"
-                 style={styles.videoPlayer}
-             />
-             <TouchableHighlight
-                 onPress={() => {showModal(innerComponent)}}
-             >
-               <Text> Touch Here </Text>
-             </TouchableHighlight>
+           // innerComponent is the one that'll be displayed within the modal, you have full control of its styling.
+           const innerComponent = <View style={{height: height/2 , width: width, justifyContent: 'center', alignItems: 'center'}}>
+               <Text>Hello world</Text>
+               <TouchableOpacity onPress={() => dismissModal()} ><Text>close modal</Text></TouchableOpacity>
            </View>
-       );
-     }
+   
+           return (
+               <View style={styles.container}>
+                   <Modal containerStyle={{backgroundColor: 'blue'}}/> /* add any style, this will override the main controller*/
+   
+                   <Text>{DeviceInfo.getBrand()}</Text>
+                   <Video
+                       source={{uri: 'http://d23dyxeqlo5psv.cloudfront.net/big_buck_bunny.mp4'}}
+                       shouldPlay={true}
+                       resizeMode="cover"
+                       style={styles.videoPlayer}
+                   />
+                   <TouchableHighlight
+                       onPress={() => {showModal(innerComponent)}}
+                   >
+                       <Text> Touch Here </Text>
+                   </TouchableHighlight>
+               </View>
+           );
+       }
    }
    
    const styles = StyleSheet.create({
-     container: {
-       flex: 1,
-       backgroundColor: '#fff',
-       alignItems: 'center',
-       justifyContent: 'center',
-     },
-     videoPlayer: {
-       position: 'relative',
-       width: '100%',
-       aspectRatio:3/2,
-     },
+       container: {
+           flex: 1,
+           backgroundColor: '#fff',
+           alignItems: 'center',
+           justifyContent: 'center',
+       },
+       videoPlayer: {
+           position: 'relative',
+           width: '100%',
+           aspectRatio:3/2,
+       },
    });
+
 ```
