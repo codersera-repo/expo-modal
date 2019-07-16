@@ -16,10 +16,9 @@ class Modal extends React.Component {
     }
 }
 
-
-
 module.exports = {
     Modal,
     showModal: Util.showModal,
     dismissModal: Util.dismissModal,
+    wrapIntoModal: Util.wrapIntoModal,
 };

@@ -20,6 +20,7 @@ To solve that problem, you can add a element at the top of the tree, and tweak i
 
 This library does the exact same thing.
 
+One more thing to note here is that, in android, the zIndex behaves differently and it is important to have the element render at the last if you want it to come on the top of the UI.
 
 **Usage**
 
@@ -28,20 +29,17 @@ In your entry app.js file add Modal component.
 ```
 /*App.js*/
 
-import (Modal} from 'expo-modal';
+import (wrapIntoModal} from 'expo-modal';
 
 export default class App extends React.Component {
 
   render() {
 
-    return (
-        <View style={styles.container}>
-          <Modal/>
-          
+    return
+        wrapIntoModal(<View style={styles.container}>
           {/*other components*/}
-        </View>  
-          )
-     }
+        </View>)
+  }
      
 }
 
@@ -55,18 +53,8 @@ You can always tweak the styling by passing containerStyle props.
 
 ```import React from 'react';
    import {Video} from 'expo';
-   import {StyleSheet, Text, View, TouchableHighlight, Dimensions, TouchableOpacity} from 'react-native';
-   import codegen from 'codegen.macro';
-   import {dismissModal, Modal, showModal} from 'expo-modal';
-   
-   // TODO: make it using export instead of require
-   const DeviceInfo = codegen`
-     if(process.env.EJECTED==='true') {
-       module.exports = 'require("react-native-device-info").default;'
-     } else {
-       module.exports = 'require("./mocks/DeviceInfoMock").default;'
-     }
-   `;
+   import {Dimensions, StyleSheet, Text, TouchableHighlight, TouchableOpacity, View} from 'react-native';
+   import {dismissModal, Modal, showModal, wrapIntoModal} from 'expo-modal';
    
    const {height, width} = Dimensions.get('window');
    
@@ -78,26 +66,23 @@ You can always tweak the styling by passing containerStyle props.
            const innerComponent = <View style={{height: height/2 , width: width, justifyContent: 'center', alignItems: 'center'}}>
                <Text>Hello world</Text>
                <TouchableOpacity onPress={() => dismissModal()} ><Text>close modal</Text></TouchableOpacity>
-           </View>
+           </View>;
    
-           return (
-               <View style={styles.container}>
-                   <Modal containerStyle={{backgroundColor: 'blue'}}/> /* add any style, this will override the main controller*/
+           const appContainer = <View style={styles.container}>
+               <Video
+                   source={{uri: 'http://d23dyxeqlo5psv.cloudfront.net/big_buck_bunny.mp4'}}
+                   shouldPlay={true}
+                   resizeMode="cover"
+                   style={styles.videoPlayer}
+               />
+               <TouchableHighlight
+                   onPress={() => {showModal(innerComponent)}}
+               >
+                   <Text> Touch Here </Text>
+               </TouchableHighlight>
+           </View>;
    
-                   <Text>{DeviceInfo.getBrand()}</Text>
-                   <Video
-                       source={{uri: 'http://d23dyxeqlo5psv.cloudfront.net/big_buck_bunny.mp4'}}
-                       shouldPlay={true}
-                       resizeMode="cover"
-                       style={styles.videoPlayer}
-                   />
-                   <TouchableHighlight
-                       onPress={() => {showModal(innerComponent)}}
-                   >
-                       <Text> Touch Here </Text>
-                   </TouchableHighlight>
-               </View>
-           );
+           return wrapIntoModal(appContainer, {{backgroundColor: 'blue'}})
        }
    }
    
