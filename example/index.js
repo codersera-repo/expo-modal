@@ -1,7 +1,7 @@
 import React from 'react';
 import {Video} from 'expo';
 import {Dimensions, StyleSheet, Text, TouchableHighlight, TouchableOpacity, View} from 'react-native';
-import {dismissModal, Modal, showModal, wrapIntoModal} from 'expo-modal';
+import Modal from 'expo-modal';
 
 const {height, width} = Dimensions.get('window');
 
@@ -12,7 +12,7 @@ export default class App extends React.Component {
         // innerComponent is the one that'll be displayed within the modal, you have full control of its styling.
         const innerComponent = <View style={{height: height/2 , width: width, justifyContent: 'center', alignItems: 'center'}}>
             <Text>Hello world</Text>
-            <TouchableOpacity onPress={() => dismissModal()} ><Text>close modal</Text></TouchableOpacity>
+            <TouchableOpacity onPress={() => Modal.dismissModal()} ><Text>close modal</Text></TouchableOpacity>
         </View>;
 
         const appContainer = <View style={styles.container}>
@@ -23,7 +23,7 @@ export default class App extends React.Component {
                 style={styles.videoPlayer}
             />
             <TouchableHighlight
-                onPress={() => {showModal(innerComponent)}}
+                onPress={() => {Modal.showModal(innerComponent)}}
             >
                 <Text> Touch Here </Text>
             </TouchableHighlight>
