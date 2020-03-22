@@ -16,7 +16,7 @@ class Modal extends React.Component {
     }
 }
 
-exports default {
+export default {
     Modal,
     showModal: Util.showModal,
     dismissModal: Util.dismissModal,
