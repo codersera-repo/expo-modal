@@ -1,6 +1,6 @@
 {
   "name": "expo-modal",
-  "version": "1.0.7",
+  "version": "1.0.8",
   "description": "Shows the modal full screen on the react-native window",
   "main": "index.js",
   "scripts": {
